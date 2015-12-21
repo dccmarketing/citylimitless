@@ -1,0 +1,69 @@
+.calendar-wrap {
+
+	ul {
+		list-style 	: none;
+		text-align 	: left;
+
+		@media only screen and (min-width: $bp__haps-small) {
+			columns: 2;
+		}
+
+		@media only screen and (min-width: $bp__tablet) {
+			columns: 3;
+		}
+	}
+}
+
+.feed-event {
+	margin-bottom 				: 1.5em;
+	-webkit-column-break-inside : avoid;
+	column-break-inside 		: avoid;
+
+	p {
+		margin: 0;
+	}
+}
+
+.powered {
+	@extend %vertcenter;
+}
+
+.thrive-logo {
+	position: relative;
+
+	@media only screen and (min-width: $bp__tablet) {
+		@include margcols( 3 );
+	}
+
+	svg {
+		fill: $linksgray;
+		width: 150px;
+		height: 50px;
+	}
+}
+
+.submit-event {
+
+	@media only screen and (min-width: $bp__haps-small) {
+		@include margcols( 2 );
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		@include margcols( 3 );
+	}
+
+	@include button( $aqua );
+}
+
+.view-calendar {
+
+	@media only screen and (min-width: $bp__haps-small) {
+		@include margcols( 2 );
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		@include margcols( 3 );
+	}
+
+	@include button( $green );
+}

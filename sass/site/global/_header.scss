@@ -1,0 +1,89 @@
+.site-header {
+	// DO NOT ADD PADDING HERE! - it screws up menus
+	background-repeat 	: no-repeat;
+	background-position : top center;
+	background-size 	: cover;
+
+	@media only screen and (min-width: $bp__tablet) {
+		height: 400px;
+	}
+
+	@media only screen and (min-width: $bp__menu-float) {
+		height: 779px;
+	}
+
+	.home {
+		@media only screen and (min-width: $bp__tablet) {
+			height: 779px;
+		}
+	}
+
+	.page-template-page_social & {
+		height: auto;
+	}
+}
+
+.header-upper {
+	background-color: $transdark;
+	border-bottom 	: 5px solid $light;
+	@extend %clearafter;
+
+	@media only screen and (min-width: $bp__tablet) {
+		border-bottom 	: none;
+	}
+}
+
+.header-wrap {
+	position: relative;
+
+	@media only screen and (min-width: $bp__menu-button+1) {
+		height 	: 140px;
+	}
+}
+
+.site-branding {
+	padding			: 1em;
+	margin			: 0 auto;
+
+	@media only screen and (min-width: $bp__menu-button+1) {
+		padding: 0.5em;
+	}
+}
+
+.site-title {
+	text-align 	: center;
+	margin 		: 0;
+
+	@media only screen and (min-width: $bp__menu-button+1) {
+		float: left;
+	}
+
+	a {
+		color 			: $color__text-site-title;
+		text-decoration : none;
+		transition 		: filter 0.5s ease;
+
+		&:hover {
+			svg {
+				filter: drop-shadow( 0 0 3px $light );
+			}
+		}
+	}
+
+	.logo {
+		width 		: 300px;
+		height 		: 125px;
+		fill 		: $light;
+	}
+}
+
+.site-description {
+	text-align 	: center;
+	color 		: $light;
+	font-family : $font__bold;
+	margin 		: 0 auto;
+
+	@media only screen and (min-width: $bp__menu-button+1) {
+		float: right;
+	}
+}

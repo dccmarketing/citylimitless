@@ -1,0 +1,90 @@
+.section-happenings {
+	@extend %graysection;
+	@extend %fourboxes;
+	padding: 1em 0;
+
+	.haps-post {
+		@extend %bgimage;
+		border 		: 1px solid $light;
+		text-align 	: center;
+		transition 	: all 0.5s ease;
+
+		&:hover {
+			border-color 	: $linksgray;
+		}
+
+		@media only screen and (min-width: $bp__tablet) {
+			width 	: 48.5%;
+			margin 	: 5px 0.4%;
+
+			&:first-child {
+				margin-left: 0.4%;
+			}
+
+			&:last-child {
+				margin-right: 0.4%;
+			}
+		}
+
+		@media only screen and (min-width: $bp__haps-large) {
+			width 	: 24%;
+			margin 	: 0 0.4%;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.haps-link {
+		color 			: $light;
+		padding 		: 1em;
+		min-height 		: 150px;
+		transition 		: all 0.5s ease;
+		background-color: $transdark;
+
+		@media only screen and (min-width: $bp__haps-small) {
+			min-height: 200px;
+		}
+
+		@media only screen and (min-width: $bp__menu-button + 1) {
+			min-height: 250px;
+		}
+
+		@media only screen and (min-width: $bp__haps-large) {
+			min-height: 300px;
+		}
+
+		@media only screen and (min-width: $bp__laptop) {
+			opacity: 0;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	.haps-title {
+		font-family : $font__bold;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.link-more-post {
+		text-transform 	: uppercase;
+		display 		: block;
+		font-family 	: $font__bold;
+	}
+
+	.link-more-news {
+		margin-top 		: 1em;
+		color 			: $light;
+		text-transform 	: uppercase;
+	}
+}

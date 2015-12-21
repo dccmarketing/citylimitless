@@ -1,0 +1,58 @@
+.popup-engage {
+	background-color: $transdark;
+	max-width 		: $size__max-width;
+	margin 			: 0 auto;
+	text-align 		: center;
+	padding 		: 2em;
+	color 			: $light;
+	transition 		: max-height 0.5s ease, opacity 0.5s ease 0.5s, border 0.25s ease, padding 0.25s ease;
+	opacity 		: 1;
+	border-top 		: 5px solid $light;
+	border-bottom 	: 5px solid $light;
+	max-height 		: 220px;
+
+	@media only screen and (min-width: $bp__tablet) {
+		display 		: block;
+		margin-top 		: 6em;
+		margin-bottom 	: 6em;
+		border 			: none;
+	}
+
+	h3 {
+		font-family 	: $font__italic;
+		margin 			: 0;
+		margin-bottom 	: 0.25em;
+	}
+
+	p {
+		margin 			: 0;
+		margin-bottom 	: 0.25em;
+	}
+
+	.nav-social {
+
+		.menu-item {
+			margin: 0 8px;
+
+			svg {
+				width 	: 60px !important;
+				height 	: 60px !important;
+				fill 	: $light !important;
+			}
+		}
+	}
+
+	&.hide {
+		max-height 	: 0;
+		padding 	: 0;
+		border 		: none;
+		opacity 	: 0;
+		visibility 	: hidden;
+
+		@media only screen and (min-width: $bp__tablet) {
+			padding 	: 2em;
+			max-height 	: 220px;
+			transition 	: max-height 0.5s ease, opacity 0.5s ease 0.5s, border 0.25s ease, padding 0.25s ease;
+		}
+	}
+}

@@ -1,0 +1,42 @@
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="file"],
+textarea {
+	color 			: $color__text-input;
+	border 			: 1px solid $color__border-input;
+	padding 		: 3px;
+	background-color: transparent;
+
+	&:focus {
+		color 			: $color__text-input-focus;
+		outline-color 	: $color__outline;
+	}
+}
+
+textarea {
+	padding 	: 0 0 0 3px;
+	width 		: 100%;
+
+	&:focus {
+		color 			: $color__text-input-focus;
+		outline-color 	: $color__outline;
+	}
+}
+
+select {
+	background 			: $color__bg-input;
+	color 				: $color__text-input;
+	padding 			: 0.1em 0.5em;
+	border 				: 0;
+	-webkit-appearance 	: none;
+	-moz-appearance 	: none;
+	appearance 			: none;
+
+	&:focus {
+		outline-color 	: $color__outline;
+	}
+}

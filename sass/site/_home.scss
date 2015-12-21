@@ -1,0 +1,66 @@
+.section {
+	padding 		: 1em;
+	border-top 		: 5px solid $light;
+	border-bottom 	: 5px solid $light;
+	text-align 		: center;
+}
+
+.section-title {
+	text-transform 	: uppercase;
+	margin 			: 0.25em;
+}
+
+h2.section-title {
+	color 		: $green;
+	font-family : $font__bold-italic;
+	margin 		: 0;
+	line-height : 1;
+
+	@media only screen and (min-width: $bp__tablet) {
+		font-size 	: $font__size-strip-title;
+	}
+}
+
+.section-text {
+	color 		: $light;
+	margin 		: 0;
+
+	@media only screen and (min-width: $bp__tablet) {
+		font-size 	: $font__size-strips-text;
+	}
+}
+
+.home {
+
+	.site-content {
+		max-width: 100%;
+	}
+
+	.content-wrap {
+		max-width: 100%;
+	}
+}
+
+.section-live {
+	background: linear-gradient( $transaqua, $transaqua ), url(images/barndoor.jpg);
+	@extend %bgimage;
+}
+.section-work {
+	background: linear-gradient( $transaqua, $transaqua ), url(images/.jpg);
+	@extend %bgimage;
+}
+.section-develop {
+	background: linear-gradient( $transaqua, $transaqua ), url(images/.jpg);
+	@extend %bgimage;
+}
+
+
+@import "home/features";
+@import "home/engage";
+@import "home/haps";
+@import "home/calendar";
+
+
+
+
+

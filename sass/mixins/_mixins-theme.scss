@@ -1,0 +1,96 @@
+@mixin button( $color ) {
+	background-color: $color;
+	padding 		: 0.5em 1em;
+	border 			: 2px solid $light;
+	transition 		: 0.5s ease;
+	margin 			: 0.5em;
+
+	a {
+		color 			: $light;
+		text-decoration : none;
+		transition 		: 0.5s ease;
+	}
+
+	&:hover {
+		background-color: $light;
+		border 			: 2px solid $color;
+
+		a {
+			color: $color;
+		}
+	}
+}
+
+
+%section {
+	ul {
+		@extend %listreset;
+	}
+
+	li {
+		display 		: inline-block;
+		vertical-align 	: top;
+		margin 			: 0 1em;
+	}
+
+	a {
+		text-decoration : none;
+		display 		: block;
+	}
+}
+
+%graysection {
+	@extend %section;
+
+	background-color: $headergray;
+
+	h3 {
+		color 	: $light;
+	}
+}
+
+%fourboxes {
+	li {
+		margin 	: 1em;
+		display : block;
+
+		@media only screen and (min-width: $bp__menu-button+1) {
+			display : inline-block;
+			margin 	: 5px 0.4%;
+			width 	: 48.5%;
+		}
+
+		@media only screen and (min-width: $bp__tablet) {
+			display : inline-block;
+			margin 	: 0 0.4%;
+			width 	: 24%;
+		}
+
+		&:first-child {
+			@media only screen and (min-width: $bp__tablet) {
+				margin-left: 0;
+			}
+		}
+
+		&:last-child {
+			@media only screen and (min-width: $bp__tablet) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+%hide {
+
+	//@media only screen and (min-width: $bp__menu-float) {
+		max-height 	: 0;
+		line-height : 0;
+		opacity 	: 0;
+		visibility 	: hidden;
+		padding 	: 0;
+		margin 		: 0;
+		border 		: none;
+		//transition 	: all 0.5s ease, max-height 1s ease;
+		transition 	: all 0.5s ease;
+	//}
+}

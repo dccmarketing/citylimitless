@@ -1,0 +1,74 @@
+.features {
+	@extend %section;
+	@extend %fourboxes;
+	border-top 		: 5px solid $light;
+	border-bottom 	: 5px solid $light;
+	text-align 		: center;
+	background-color: $transdark;
+
+	@media only screen and (min-width: $bp__tablet) {
+		border-top: none;
+	}
+
+	a {
+		font-family 		: $font__bold-italic;
+		width 				: 100%;
+		height 				: $size__feature;
+		background-position : center center;
+		background-size 	: size;
+		background-repeat 	: no-repeat;
+		transition 			: opacity 0.5s ease;
+		color 				: $light;
+
+		@media only screen and (min-width: $bp__laptop) {
+			opacity: 0.75;
+
+			&:hover {
+				opacity : 1;
+
+				> .label-feature {
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+.label-feature {
+	line-height 	: $size__feature;
+	text-transform 	: lowercase;
+	font-size 		: 2.5em;
+	transition 		: color 0.5s ease;
+
+	@media only screen and (min-width: $bp__feature-text) {
+		font-size: $font__size-boxes;
+	}
+
+	@media only screen and (min-width: $bp__laptop) {
+		color: transparent;
+	}
+
+	.active & {
+		color: $headergray;
+	}
+}
+
+.feat-live {
+	background-image: url();
+	background: orange;
+}
+
+.feat-work {
+	background-image: url();
+	background: red;
+}
+
+.feat-develop {
+	background-image: url();
+	background: green;
+}
+
+.feat-engage {
+	background-image: url();
+	background: blue;
+}

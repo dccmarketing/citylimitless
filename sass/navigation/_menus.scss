@@ -1,0 +1,248 @@
+.main-navigation {
+	clear			: both;
+	display			: block;
+	float			: left;
+	width			: 100%;
+	text-transform 	: uppercase;
+
+	@media only screen and (min-width: $bp__menu-float + 1) {
+		position 	: absolute;
+		top 		: 57.5%;
+		transform 	: translateY(-50%);
+		right 		: 0;
+		width 		: 70%;
+	}
+
+	ul {
+		@extend %listreset;
+		text-align 	: left;
+		display 	: none;
+		background 	: $aqua;
+
+		@media only screen and (min-width: $bp__menu-button+1) {
+			display 	: block;
+			text-align	: center;
+			background 	: transparent;
+		}
+
+		@media only screen and (min-width: $bp__menu-float) {
+			text-align 	: right;
+		}
+
+		ul {
+			display		: inherit;
+			background	: $color__bg-menu-item-mobile;
+
+			@media only screen and (min-width: $bp__menu-button+1) {
+				background 	: transparent;
+				box-shadow	: 0 3px 3px rgba(0, 0, 0, 0.2);
+				position	: absolute;
+				z-index		: 99999;
+				transition 	: visibility 0s ease 0.5s,opacity 0.5s ease;
+				visibility 	: hidden;
+				opacity 	: 0;
+				left 		: 0;
+			} // breakpoint
+
+			ul {
+
+				@media only screen and (min-width: $bp__menu-button+1) {
+					left: 100%;
+					top	: 0;
+				}
+				a {
+					@media only screen and (max-width: $bp__menu-button) {
+						padding 	: 0.5em 3em;
+						border-left : none;
+					}
+				}
+			}
+
+			a {
+				@media only screen and (max-width: $bp__menu-button) {
+					padding: 0.5em 2em;
+				}
+
+				@media only screen and (min-width: $bp__menu-button+1) {
+					white-space : nowrap;
+					color 		: $color__text-submenu;
+				}
+			}
+
+			li {
+
+				&:last-child {
+
+					@media only screen and (max-width: $bp__menu-button) {
+						padding-bottom: 0;
+					}
+				}
+
+			}
+		} // .submenu ul
+	} // first-level ul
+
+	li {
+		padding: 0.5em 1em;
+
+		@media only screen and (min-width: $bp__menu-button+1) {
+			padding 		: 0.35em;
+		}
+
+		@media only screen and (min-width: $bp__menu-float) {
+			display 	: inline-block;
+			position 	: relative;
+		}
+
+		&:hover,
+		&.focus {
+
+			> ul {
+				@media only screen and (min-width: $bp__menu-button+1) {
+					display 	: block;
+					visibility 	: visible;
+					opacity 	: 1;
+				}
+			}
+
+			> a {
+				color: $color__text-menu-mobile-hover;
+
+				@media only screen and (min-width: $bp__menu-button+1) {
+					color: $color__text-menu-hover;
+				}
+			}
+		}
+
+		&:not(:last-child) {
+
+			a {
+
+				@media only screen and (min-width: $bp__menu-float) {
+					border-right 	: 2px solid $light;
+					padding-right 	: 0.5em;
+				}
+			}
+		}
+	}
+
+	a {
+		display			: block;
+		text-decoration	: none;
+		color 			: $color__text-menu-mobile;
+
+		@media only screen and (min-width: $bp__menu-button+1) {
+			color 			: $color__text-menu;
+			font-size 		: $font__size-menu;
+			line-height 	: 1.25;
+		}
+	}
+
+	.current_page_item,
+	.current-menu-item,
+	.current-menu-parent,
+	.current_page_ancestor {
+
+		> a {
+			color: $color__text-menu-current-mobile;
+
+			@media only screen and (min-width: $bp__menu-float) {
+				color: $color__text-menu-current;
+			}
+		}
+
+		&:hover,
+		&.focus {
+
+			> a {
+				color: $color__text-menu-current-hover-mobile;
+
+				@media only screen and (min-width: $bp__menu-float) {
+					color: $color__text-menu-current-hover;
+				}
+			}
+		}
+	}
+
+	&.toggled {
+
+		.nav-menu {
+			@extend %menutoggle;
+		}
+
+		.menu-main-menu-container {
+			@media only screen and (min-width: $bp__menu-button+1) and (max-width: $bp__menu-float) {
+				transform: translateX(0);
+			}
+
+		}
+	}
+} // .main-navigation
+
+// Center Menu
+.menu-main-menu-container {
+	margin		: 0 auto;
+
+	@media only screen and (min-width: $bp__menu-button+1) and (max-width: $bp__menu-float) {
+		position 		: fixed;
+		top 			: 0;
+		bottom 			: 0;
+		left 			: 0;
+		width 			: 275px;
+		height 			: 100%;
+		color 			: white;
+		background-color: $transaqua;
+		overflow 		: auto;
+		padding-top 	: 3em;
+		transition 		: transform 0.4s ease;
+		transform 		: translateX(-275px);
+		z-index 		: 9999;
+	}
+}
+
+
+/* Small menu */
+.menu-toggle {
+	@extend %menutoggle;
+	background: $color__bg-menu-button;
+
+	@media only screen and (min-width: $bp__menu-button+1) and (max-width: $bp__menu-float) {
+		position 	: absolute;
+		top 	 	: 57.5%;
+		transform 	: translateY(-50%);
+		width 		: 255px;
+		right 		: 0;
+	}
+
+	@media only screen and (min-width: $bp__menu-float + 1) {
+		display 	: none;
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin	: 0 0 $size__bot-marg;
+		overflow: hidden;
+	}
+
+	& .nav-previous {
+		float	: left;
+		width	: 50%;
+	}
+
+	& .nav-next {
+		float		: right;
+		text-align 	: right;
+		width		: 50%;
+	}
+}
+
+.children-caret {
+	display 	: inline-block;
+	height 		: 0.75em;
+	margin-left : 0.25em;
+	width 		: 0.75em;
+}

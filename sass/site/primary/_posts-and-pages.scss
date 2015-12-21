@@ -1,0 +1,156 @@
+.sticky {
+	display: block;
+}
+
+.hentry {
+	margin: 0 0 1.5em;
+
+	&:first-child {
+		.entry-title {
+			@media only screen and (min-width: $bp__menu-float) {
+				color 		: $light;
+				font-size 	: $font__size-page-title;
+
+				a {
+					color: $light;
+				}
+			}
+		}
+		.entry-content {
+			margin-top: 1.5em;
+		}
+	}
+}
+
+.byline,
+.updated:not(.published){
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	background-color: $light;
+	hyphens 		: auto;
+	margin 			: 1.5em 0 0;
+	word-wrap 		: break-word;
+
+	@media only screen and (min-width: $bp__menu-float) {
+		min-height 	: 350px;
+		overflow 	: auto;
+		padding 	: 1em;
+	}
+
+	.blog & {
+		margin-top: 0;
+	}
+}
+
+.page-content {
+	margin-top 		: 0;
+}
+
+.page-links {
+	clear 	: both;
+	margin 	: 0 0 1.5em;
+}
+
+.site-content {
+	width 			: 100%;
+	margin 			: 0 auto $size__bot-marg;
+	max-width 		: $size__max-width;
+	background-color: $light;
+
+	.home & {
+		margin 			: 0 auto;
+		background-color: $light;
+	}
+
+	.page-template-default &,
+	.page-template-page_with-children &,
+	.blog &,
+	.single-post & {
+
+		@media only screen and (min-width: $bp__menu-float) {
+			margin-top: -450px;
+			background-color: transparent;
+		}
+	}
+}
+
+.content-area {
+	width 		: 100%;
+	float 		: left;
+	overflow 	: auto;
+	padding 	: 1em;
+
+	.page & {
+		overflow: hidden;
+
+		@media only screen and (min-width: $bp__menu-float) {
+			padding: 0;
+		}
+	}
+}
+
+.entry-title {
+	color 			: $aqua;
+	font-size 		: $font__size-boxes;
+	font-family 	: $font__italic;
+	text-transform 	: lowercase;
+	margin 			: 0;
+
+	a {
+		text-decoration : none;
+	}
+
+	.page-template-page_social & {
+		color: $aqua !important;
+		padding: 1rem;
+	}
+}
+
+.entry-meta,
+.entry-footer {
+	padding: 1em;
+}
+
+.social,
+.connect {
+
+	.fb_iframe_widget {
+		display : block;
+		margin 	: 0 auto;
+
+		> span {
+			display : block;
+			margin 	: 0 auto;
+		}
+
+		@media only screen and (min-width: $bp__menu-float) {
+			float: left;
+		}
+	}
+
+	#sb_instagram {
+		border 	: 1px solid #e9eaed;
+		display : block;
+		margin 	: 0 auto;
+
+		@media only screen and (max-width: $bp__menu-float - 1) {
+			width: 100% !important;
+		}
+
+		@media only screen and (min-width: $bp__menu-float) {
+			float 	: right;
+		}
+	}
+
+}
+
+

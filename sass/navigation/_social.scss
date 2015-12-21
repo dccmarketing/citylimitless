@@ -1,0 +1,48 @@
+.nav-social {
+	display 		: inline-block;
+	vertical-align 	: middle;
+
+	@media only screen and (min-width: $bp__tablet) {
+		vertical-align: bottom;
+	}
+
+	.screen-reader-text,
+	a {
+		@extend %hidetext;
+	}
+
+	.menu-items {
+		@extend %listreset;
+	}
+
+	.menu-item {
+		display 		: inline-block;
+		position 		: relative;
+		line-height 	: 1em;
+
+		.social &,
+		.connect & {
+			margin: 0 0.5em;
+		}
+
+		&:hover {
+			border-color: $dark;
+
+			svg {
+				fill: $dark;
+			}
+		}
+
+		svg {
+			width 	: $font__size-social;
+			height 	: $font__size-social;
+			fill 	: $color__text-social;
+
+			.social &,
+			.connect & {
+				height 	: 48px;
+				width 	: 48px;
+			}
+		}
+	}
+}
