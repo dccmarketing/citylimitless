@@ -42,7 +42,7 @@ $haps = city_limitless_get_posts( 'post', array( 'posts_per_page' => '4' ) );
 
 			wp_reset_postdata();
 
-			?><a href="<?php echo site_url( '/news' ); ?>" class="link-more-news">Click for more</a>
+			?><a href="<?php echo site_url( '/news' ); ?>" class="link-more-news">Read the Happenings Archive</a>
 		</div>
 	</section>
 	<section class="section section-work">
