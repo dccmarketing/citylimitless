@@ -42,15 +42,15 @@ h2.section-title {
 }
 
 .section-live {
-	background: linear-gradient( $transaqua, $transaqua ), url(images/barndoor.jpg);
+	background: linear-gradient( $transaqua, $transaqua ), url(assets/images/barndoor.jpg);
 	@extend %bgimage;
 }
 .section-work {
-	background: linear-gradient( $transaqua, $transaqua ), url(images/.jpg);
+	background: linear-gradient( $transaqua, $transaqua ), url(assets/images/.jpg);
 	@extend %bgimage;
 }
 .section-develop {
-	background: linear-gradient( $transaqua, $transaqua ), url(images/.jpg);
+	background: linear-gradient( $transaqua, $transaqua ), url(assets/images/.jpg);
 	@extend %bgimage;
 }
 
@@ -59,8 +59,3 @@ h2.section-title {
 @import "home/engage";
 @import "home/haps";
 @import "home/calendar";
-
-
-
-
-

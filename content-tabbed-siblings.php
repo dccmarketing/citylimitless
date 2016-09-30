@@ -2,30 +2,40 @@
 /**
  * The template used for displaying page content in page.php
  *
- * This is for displaying parent pages. The children of the parent are displayed on this page
- * in a tab-like format. The child pages will not be displayed as a separate, stand-alone
- * pages, but only on the parent page. Maximum of four child pages allowed.
+ * This is for displaying child pages. The parent title and featured image are used instead
+ * of the current page. The sibling pages are displayed in a tab-like format. The current page
+ * content will be opened already.
  *
  * @package City Limitless
  */
 
-$children = city_limitless_get_posts( 'page', array( 'post_parent' => get_the_ID(), 'posts_per_page' => 4 ), get_the_ID() );
+global $post;
 
-//pretty( $allpages );
+$parent 	= get_post_ancestors( get_the_ID() )[0];
+$siblings 	= city_limitless_get_posts( 'page', array( 'post_parent' => $parent, 'posts_per_page' => 4 ), get_the_ID() );
 
 ?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header contentpage"><?php
+	<header class="entry-header contentpage">
+		<h1 class="entry-title"><?php
 
-		the_title( '<h1 class="entry-title">', '</h1>' );
+			echo get_the_title( $parent );
 
-	?></header><!-- .entry-header -->
-	<div class="page-content"><?php
+		?></h1>
+	</header><!-- .entry-header -->
+	<div class="page-content tabbed-siblings">
+		<div class="children"><?php
 
-		the_content();
+			foreach ( $siblings->posts as $child ) :
 
-		?><div class="children"><?php
+				if ( get_the_ID() === $child->ID ) {
 
-			foreach ( $children->posts as $child ) {
+					$classes = 'section-child single-child child-' . $child->ID;
+
+				} else {
+
+					$classes = 'section-child hide child-' . $child->ID;
+
+				}
 
 				$links = get_field( 'page_links', $child->ID );
 
@@ -34,7 +44,15 @@ $children = city_limitless_get_posts( 'page', array( 'post_parent' => get_the_ID
 					<div class="tab-child-name"><?php echo esc_attr( $child->post_title ); ?></div>
 					<div class="tab-child-excerpt"><?php echo get_field( 'page_excerpt', $child->ID ); ?></div>
 				</summary>
-				<section class="section-child hide child-<?php echo esc_attr( $child->ID ); ?> child-<?php echo esc_attr( $child->post_name ); ?>" id="child-<?php echo esc_attr( $child->ID ); ?>">
+				<section class="<?php echo esc_attr( $classes ); ?> child-<?php echo esc_attr( $child->post_name ); ?>" id="child-<?php echo esc_attr( $child->ID ); ?>"<?php
+
+				if ( get_the_ID() === $child->ID ) {
+
+					echo ' style="display:block;"';
+
+				}
+
+				?>>
 					<div class="section-content">
 						<div class="child-content">
 							<h2><?php echo esc_html( $child->post_title ); ?></h2><?php
@@ -96,7 +114,7 @@ $children = city_limitless_get_posts( 'page', array( 'post_parent' => get_the_ID
 					?></div><!-- .section-content -->
 				</section><?php
 
-			}
+			endforeach;
 
 			?></div><!-- .sections-children -->
 		</div><!-- .children -->

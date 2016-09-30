@@ -17,7 +17,17 @@ get_header(); ?>
 
 			while ( have_posts() ) : the_post();
 
-				get_template_part( 'content', 'page' );
+				$parent = get_post_ancestors( get_the_ID() )[0];
+
+				if ( empty( $parent ) ) {
+
+					get_template_part( 'content', 'page' );
+
+				} else {
+
+					get_template_part( 'content', 'tabbed-siblings' );
+
+				}
 
 			endwhile; // end of the loop.
 

@@ -44,68 +44,68 @@ Media
 	Captions
 	Galleries
 --------------------------------------------------------------*/
-@import "sass/variables-site/variables-site";
-@import "sass/mixins/mixins-master";
-@import "sass/mixins/mixins-slushman";
-@import "sass/mixins/mixins-theme";
-//@import "sass/hover/hover";
+@import "variables-site/vars";
+@import "mixins/mixins-master";
+@import "mixins/mixins-slushman";
+@import "mixins/mixins-theme";
+//@import "hover/hover";
 
 /*--------------------------------------------------------------
 ## Reset
 --------------------------------------------------------------*/
-@import "sass/normalize";
+@import "normalize";
 
 /*--------------------------------------------------------------
 ## Typography
 --------------------------------------------------------------*/
-@import "sass/typography/typography";
+@import "typography/typography";
 
 /*--------------------------------------------------------------
 ## Elements
 --------------------------------------------------------------*/
-@import "sass/elements/elements";
+@import "elements/elements";
 
 /*--------------------------------------------------------------
 ## Forms
 --------------------------------------------------------------*/
-@import "sass/forms/forms";
+@import "forms/forms";
 
 /*--------------------------------------------------------------
 ## Navigation
 --------------------------------------------------------------*/
-@import "sass/navigation/navigation";
+@import "navigation/navigation";
 
 /*--------------------------------------------------------------
 ## Accessibility
 --------------------------------------------------------------*/
-@import "sass/modules/accessibility";
+@import "modules/accessibility";
 
 /*--------------------------------------------------------------
 ## Alignments
 --------------------------------------------------------------*/
-@import "sass/modules/alignments";
+@import "modules/alignments";
 
 /*--------------------------------------------------------------
 ## Clearings
 --------------------------------------------------------------*/
-@import "sass/modules/clearings";
+@import "modules/clearings";
 
 /*--------------------------------------------------------------
 ## Widgets
 --------------------------------------------------------------*/
-@import "sass/site/secondary/widgets";
+@import "site/secondary/widgets";
 
 /*--------------------------------------------------------------
 ## Content
 --------------------------------------------------------------*/
-@import "sass/site/site";
+@import "site/site";
 
 /*--------------------------------------------------------------
 ## Infinite scroll
 --------------------------------------------------------------*/
-@import "sass/modules/infinite-scroll";
+@import "modules/infinite-scroll";
 
 /*--------------------------------------------------------------
 ## Media
 --------------------------------------------------------------*/
-@import "sass/media/media";
+@import "media/media";

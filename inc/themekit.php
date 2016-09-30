@@ -1,5 +1,19 @@
 <?php
 
+
+add_action( 'after_body', 'city_limitless_analytics_code' );
+add_filter( 'walker_nav_menu_start_el', 'city_limitless_menu_caret', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'city_limitless_social_menu_svgs', 10, 4 );
+add_action( 'wp_head', 'city_limitless_header_image' );
+add_action( 'wp_footer', 'city_limitless_child_tab_images' );
+add_shortcode( 'listmenu', 'city_limitless_list_menu' );
+add_filter( 'embed_handler_html', 'city_limitless_custom_youtube_settings' );
+add_filter( 'embed_oembed_html', 'city_limitless_custom_youtube_settings' );
+
+
+
+
+
 /**
  * Prints whatever in a nice, readable format
  */
@@ -22,8 +36,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <?php } // pdc_analytics_code(0)
-add_action( 'after_body', 'city_limitless_analytics_code' );
-
 
 /**
  * Add Down Caret to Menus with Children
@@ -47,9 +59,6 @@ function city_limitless_menu_caret( $item_output, $item, $depth, $args ) {
 	return $output;
 
 } // city_limitless_menu_caret()
-add_filter( 'walker_nav_menu_start_el', 'city_limitless_menu_caret', 10, 4 );
-
-
 
 /**
  * Change Social Menu to Icons Only
@@ -86,8 +95,6 @@ function city_limitless_social_menu_svgs( $item_output, $item, $depth, $args ) {
 	return $output;
 
 } // city_limitless_social_menu_svgs()
-add_filter( 'walker_nav_menu_start_el', 'city_limitless_social_menu_svgs', 10, 4 );
-
 
 /**
  * Gets the appropriate SVG based on a menu item class
@@ -281,36 +288,37 @@ function city_limitless_get_featured_images( $postID ) {
  * @param   array 		$params 		Optional parameters
  * @return 	object 		A post object
  */
-function city_limitless_get_posts( $post, $params = array() ) {
+function city_limitless_get_posts( $post, $params = array(), $cache = '' ) {
+
+	if ( empty( $post ) ) { return -1; }
 
 	$return = '';
-	$return = wp_cache_get( 'city_limitless_' . $post . '_posts', 'city_limitless_posts' );
+	$cache_name = 'posts';
+
+	if ( ! empty( $cache ) ) {
+
+		$cache_name = 'city_limitless_' . $cache . '_posts';
+
+	}
+
+	$return = wp_cache_get( $cache_name, 'posts' );
 
 	if ( false === $return ) {
 
 		$args['post_type'] 				= $post;
 		$args['post_status'] 			= 'publish';
-		$args['orderby'] 				= 'date';
+		$args['order_by'] 				= 'date';
 		$args['posts_per_page'] 		= 50;
 		$args['no_found_rows']			= true;
 		$args['update_post_meta_cache'] = false;
 		$args['update_post_term_cache'] = false;
 
-		if ( ! empty( $params ) ) {
-
-			foreach ( $params as $key => $value ) {
-
-				$args[$key] = $value;
-
-			}
-
-		}
-
-		$query = new WP_Query( $args );
+		$args 	= wp_parse_args( $params, $args );
+		$query 	= new WP_Query( $args );
 
 		if ( ! is_wp_error( $query ) && $query->have_posts() ) {
 
-			wp_cache_set( 'city_limitless_' . $post . '_posts', $query, 'city_limitless_posts', 5 * MINUTE_IN_SECONDS );
+			wp_cache_set( $cache_name, $query, 'posts', 5 * MINUTE_IN_SECONDS );
 
 			$return = $query;
 
@@ -353,8 +361,17 @@ function city_limitless_shorten_text( $text, $limit = 100, $after = '...' ) {
 function city_limitless_header_image() {
 
 	$output = '';
+	$parent = get_post_ancestors( get_the_ID() )[0];
 
-	$image 	= city_limitless_get_thumbnail_url( get_the_ID(), 'full' );
+	if ( empty( $parent ) ) {
+
+		$image 	= city_limitless_get_thumbnail_url( get_the_ID(), 'full' );
+
+	} else {
+
+		$image 	= city_limitless_get_thumbnail_url( $parent, 'full' );
+
+	}
 
 	if ( ! $image ) {
 
@@ -388,14 +405,12 @@ function city_limitless_header_image() {
 	echo $output;
 
 } // city_limitless_header_image()
-add_action( 'wp_head', 'city_limitless_header_image' );
-
 
 function city_limitless_child_tab_images() {
 
 	$output 	= '';
 	$parents 	= city_limitless_get_all_parents();
-	$children 	= city_limitless_get_posts( 'page', array( 'post_parent__in' => $parents ) );
+	$children 	= city_limitless_get_posts( 'page', array( 'post_parent__in' => $parents ), 'tabimgs' );
 
 	if ( empty( $children ) ) { return; }
 
@@ -424,12 +439,10 @@ function city_limitless_child_tab_images() {
 	echo $output;
 
 } // city_limitless_child_tab_images()
-add_action( 'wp_footer', 'city_limitless_child_tab_images' );
-
 
 function city_limitless_get_all_parents() {
 
-	$parents = city_limitless_get_posts( 'page', array( 'post_parent' => 0 ) );
+	$parents = city_limitless_get_posts( 'page', array( 'post_parent' => 0 ), 'parents' );
 	$return = array();
 
 	if ( ! empty( $parents ) ) {
@@ -487,7 +500,6 @@ function city_limitless_list_menu( $atts, $content = null ) {
 	);
 }
 //Create the shortcode
-add_shortcode( 'listmenu', 'city_limitless_list_menu' );
 
 /**
  * Modifies the YouTube embed code
@@ -519,7 +531,44 @@ function city_limitless_custom_youtube_settings( $html ) {
 
 } // city_limitless_custom_youtube_settings()
 
-add_filter( 'embed_handler_html', 'city_limitless_custom_youtube_settings' );
-add_filter( 'embed_oembed_html', 'city_limitless_custom_youtube_settings' );
+/**
+ * Determines if a page is within a tree of pages or not.
+ *
+ * @exits 		If $pageID is empty.
+ * @param 		int 		$pageID 		The page ID.
+ * @return 		bool 						TRUE if in a tree, FALSE if not.
+ */
+function limitless_is_tree( $pageID ) {
 
+	if ( empty( $pageID ) ) { return; }
 
+	if ( is_int( $pageID ) ) {
+
+		$id = $pageID;
+
+	} elseif ( is_string( $pageID ) ) {
+
+		$page = get_page_by_title( $pageID );
+
+		if ( ! $page ) { return; }
+
+		$id = $page->ID;
+
+	}
+
+	global $post;
+
+	if ( is_page( $id ) ) { return TRUE; }
+	if ( empty( $post ) ) { return FALSE; }
+
+	$ancs = get_post_ancestors( $post->ID );
+
+	foreach ( $ancs as $anc ) {
+
+		if ( is_page() && $id === $anc ) { return TRUE; }
+
+	}
+
+	return FALSE;
+
+} // limitless_is_tree()

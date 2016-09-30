@@ -5,6 +5,12 @@
  * @package City Limitless
  */
 
+add_action( 'after_setup_theme', 'city_limitless_setup' );
+add_action( 'widgets_init', 'city_limitless_widgets_init' );
+add_action( 'wp_enqueue_scripts', 'city_limitless_scripts' );
+add_action( 'wp_feed_options', 'city_limitless_force_feed', 10, 2 );
+add_action( 'excerpt_length',  'city_limitless_excerpt_length'  );
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -28,7 +34,7 @@ function city_limitless_setup() {
 	 * If you're building a theme based on _s, use a find and replace
 	 * to change 'city-limitless' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'city-limitless', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'city-limitless', get_template_directory() . '/assets/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -78,7 +84,6 @@ function city_limitless_setup() {
 
 } // city_limitless_setup()
 endif; // city_limitless_setup
-add_action( 'after_setup_theme', 'city_limitless_setup' );
 
 /**
  * Register widget area.
@@ -98,7 +103,6 @@ function city_limitless_widgets_init() {
 	) );
 
 } // city_limitless_widgets_init()
-add_action( 'widgets_init', 'city_limitless_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -107,20 +111,13 @@ function city_limitless_scripts() {
 
 	wp_enqueue_style( 'city-limitless-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'city-limitless-navigation', get_template_directory_uri() . '/js/navigation.min.js', array(), '20120206', true );
-
-	wp_enqueue_script( 'city-limitless-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.min.js', array(), '20130115', true );
+	wp_enqueue_script( 'city-limitless-public', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery' ), '20150309', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_script( 'city-limitless-public', get_template_directory_uri() . '/js/public.min.js', array( 'jquery' ), '20150309', true );
-
-	wp_enqueue_script( 'city-limitless-modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '20150605', true );
-
 } // city_limitless_scripts()
-add_action( 'wp_enqueue_scripts', 'city_limitless_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -160,7 +157,8 @@ require get_template_directory() . '/inc/themekit.php';
  */
 function city_limitless_get_feed( $feed ) {
 
-	$feed = fetch_feed( $feed );
+	$feed 	= fetch_feed( $feed );
+	$limit 	= 0;
 
 	if ( ! is_wp_error( $feed ) ) {
 
@@ -174,11 +172,19 @@ function city_limitless_get_feed( $feed ) {
 
 	}
 
-	if ( 0 == $limit ) { return FALSE; }
+	if ( 0 === $limit ) { return FALSE; }
 
 	return $items;
 
 } // city_limitless_get_feed()
+
+function city_limitless_force_feed($feed, $url) {
+
+	if ( 'http://www.thrivedecatur.com/api/?key=D5saDoAJBmQtffRaDksH22YBG' !== $url ) { return; }
+
+	$feed->force_feed(true);
+
+} // city_limitless_force_feed()
 
 
 function city_limitless_excerpt_length( $length ) {
@@ -194,9 +200,3 @@ function city_limitless_excerpt_length( $length ) {
     }
 
 }
-add_action( 'excerpt_length',  'city_limitless_excerpt_length'  );
-
-
-
-
-

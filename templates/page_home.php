@@ -9,7 +9,7 @@
 
 get_header();
 
-$haps = city_limitless_get_posts( 'post', array( 'posts_per_page' => '4' ) );
+$haps = city_limitless_get_posts( 'post', array( 'posts_per_page' => '4' ), 'home' );
 
 	?><section class="section section-live">
 		<div class="wrap section-wrap">

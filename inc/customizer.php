@@ -505,7 +505,7 @@ class city_limitless_Customize {
 	 */
 	public static function live_preview() {
 
-		wp_enqueue_script( 'city_limitless_customizer', get_template_directory_uri() . '/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '20130508', true );
+		wp_enqueue_script( 'city_limitless_customizer', get_template_directory_uri() . '/assets/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '20130508', true );
 
 	} // live_preview()
 

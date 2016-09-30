@@ -146,7 +146,8 @@
 
 
 
-.page-template-page_with-children {
+.page-template-page_with-children,
+.tabbed-siblings {
 
 	.children {
 		summary:nth-of-type(1) {
@@ -200,55 +201,3 @@
 		}
 	}
 }
-/*
-
-// Flexbox
-.tab-get-involved {
-	order: 1;
-}
-.tab-official {
-	order: 3;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 2;
-	}
-}
-.tab-community {
-	order: 5;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 3;
-	}
-}
-.tab-enjoy {
-	order: 7;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 4;
-	}
-}
-
-.child-get-involved {
-	order: 2;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 5;
-	}
-}
-.child-official {
-	order: 4;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 6;
-	}
-}
-.child-community {
-	order: 6;
-
-	@media only screen and (min-width: $bp__menu-float) {
-		order: 7;
-	}
-}
-.child-enjoy {
-	order: 8;
-} */
